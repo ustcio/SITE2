@@ -232,17 +232,6 @@ function showCelebration(username) {
 }
 function closeCelebration() { document.getElementById('celebration-overlay').classList.remove('active'); }
 
-// ==================== WELCOME / TURNSTILE ====================
-/* 
-function onGlobalTurnstileSuccess() { document.getElementById('turnstile-overlay').style.display = 'none'; }
-function onGlobalTurnstileError() { document.getElementById('turnstile-loading').textContent = '验证加载失败，请刷新页面'; }
-function closeWelcome() {
-    const overlay = document.getElementById('welcome-overlay');
-    overlay.style.opacity = '0';
-    setTimeout(() => { overlay.style.display = 'none'; }, 600);
-}
-*/
-
 // ==================== CHAT DEMO ====================
 async function sendDemoMessage() {
     const input = document.getElementById('demo-input-field');
@@ -619,7 +608,7 @@ Object.assign(window, {
     navigateToPage, toggleMobileMenu, toggleTheme, openModal, closeModal,
     switchToLogin, switchToSignup, switchToForgot,
     handleLogin, handleSignup, handleForgotPassword, logout,
-    toggleUserDropdown, openAdminLogin, closeAdminModal, handleAdminLogin,
+    toggleUserDropdown, openAdminLogin, closeAdminModal, handleAdminModal,
     toggleAISelector, selectAI,
     sendDemoMessage, handleDemoInput, sendChatbotMessage, handleChatbotInput,
     runSpeedTest, runPingTest, runIPLookup, detectVPN, checkSSL, fetchHeaders,
@@ -629,6 +618,6 @@ Object.assign(window, {
     calcInput, calcClear, calcDelete, calcEval, plotFunction,
     generateCitation, convertWavelength, generateLuckyColor, drawTarotCard,
     updateProfile, changePassword, resendVerification,
-    showCelebration, closeCelebration, closeWelcome,
-    onGlobalTurnstileSuccess, onGlobalTurnstileError, showToast
+    showCelebration, closeCelebration,
+    showToast
 });
