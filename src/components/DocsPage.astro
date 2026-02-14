@@ -1,6 +1,23 @@
 ---
+// 1. 在这里定义代码字符串
+const sdkCode = `import { AGIEra } from '@agiera/sdk';
+
+const client = new AGIEra({
+  apiKey: process.env.AGIERA_API_KEY
+});
+
+const response = await client.complete({
+  model: 'agi-era-v2',
+  prompt: 'Explain quantum computing in simple terms',
+  maxTokens: 500
+});
+
+console.log(response.text);`;
+
+const authCode = `Authorization: Bearer your-api-key-here`;
+---
+
 <div class="page" id="page-docs">
-    <div class="docs-layout">
     <div class="docs-layout">
         <aside class="docs-sidebar">
             <div class="docs-nav-section">
@@ -39,24 +56,13 @@
                 <h3>2. Install the SDK</h3>
                 <div class="code-block"><code>npm install @agiera/sdk</code></div>
                 <h3>3. Make your first request</h3>
-                <div class="code-block"><code>import { AGIEra } from '@agiera/sdk';
-
-const client = new AGIEra({
-  apiKey: process.env.AGIERA_API_KEY
-});
-
-const response = await client.complete({
-  model: 'agi-era-v2',
-  prompt: 'Explain quantum computing in simple terms',
-  maxTokens: 500
-});
-
-console.log(response.text);</code></div>
+                <!-- 2. 使用 set:html 指令注入代码 -->
+                <div class="code-block"><code set:html={sdkCode}></code></div>
             </div>
             <div class="docs-section">
                 <h2>Authentication</h2>
                 <p>All API requests require authentication using your API key. Include it in the Authorization header:</p>
-                <div class="code-block"><code>Authorization: Bearer your-api-key-here</code></div>
+                <div class="code-block"><code set:html={authCode}></code></div>
                 <p>Keep your API key secure and never expose it in client-side code. Use environment variables or a secrets manager in production.</p>
             </div>
             <div class="docs-section">
