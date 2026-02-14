@@ -233,6 +233,7 @@ function showCelebration(username) {
 function closeCelebration() { document.getElementById('celebration-overlay').classList.remove('active'); }
 
 // ==================== WELCOME / TURNSTILE ====================
+/* 
 function onGlobalTurnstileSuccess() { document.getElementById('turnstile-overlay').style.display = 'none'; }
 function onGlobalTurnstileError() { document.getElementById('turnstile-loading').textContent = '验证加载失败，请刷新页面'; }
 function closeWelcome() {
@@ -240,6 +241,7 @@ function closeWelcome() {
     overlay.style.opacity = '0';
     setTimeout(() => { overlay.style.display = 'none'; }, 600);
 }
+*/
 
 // ==================== CHAT DEMO ====================
 async function sendDemoMessage() {
