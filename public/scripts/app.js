@@ -141,16 +141,14 @@ async function handleSignup(e) {
             localStorage.setItem('token', data.token);
             currentUser = data.user || { email, name: username };
             localStorage.setItem('user', JSON.stringify(currentUser));
-            updateAuthUI(); closeModal();
-            showToast('Signup successful!'); // 移除了庆祝动画，替换为普通提示
+            updateAuthUI(); closeModal(); showCelebration(username);
         } else {
             document.getElementById('signup-error').textContent = data.message || 'Signup failed';
         }
     } catch (err) {
         currentUser = { email, name: username, initial: username[0].toUpperCase() };
         localStorage.setItem('user', JSON.stringify(currentUser));
-        updateAuthUI(); closeModal();
-        showToast('Signup successful!'); // 移除了庆祝动画，替换为普通提示
+        updateAuthUI(); closeModal(); showCelebration(username);
     }
 }
 
@@ -223,6 +221,16 @@ function showToast(message, duration = 3000) {
     container.appendChild(toast);
     setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, duration);
 }
+
+// ==================== CELEBRATION ====================
+function showCelebration(username) {
+    const overlay = document.getElementById('celebration-overlay');
+    document.getElementById('celebration-username').textContent = username;
+    overlay.classList.add('active');
+    setTimeout(() => { document.querySelector('.celebration-progress-bar').style.width = '100%'; }, 100);
+    setTimeout(closeCelebration, 4000);
+}
+function closeCelebration() { document.getElementById('celebration-overlay').classList.remove('active'); }
 
 // ==================== CHAT DEMO ====================
 async function sendDemoMessage() {
@@ -584,8 +592,8 @@ function init() {
     if (savedUser) { try { currentUser = JSON.parse(savedUser); } catch(e) {} }
     updateAuthUI();
     initVisitorCounter();
-    // Plot initial function
-    setTimeout(plotFunction, 500);
+    // Execute any immediate UI updates without delay
+    plotFunction(); // Call immediately instead of with timeout
     console.log('✨ AGI Era - Ultimate Liquid Glass Edition');
 }
 
@@ -610,5 +618,6 @@ Object.assign(window, {
     calcInput, calcClear, calcDelete, calcEval, plotFunction,
     generateCitation, convertWavelength, generateLuckyColor, drawTarotCard,
     updateProfile, changePassword, resendVerification,
+    showCelebration, closeCelebration,
     showToast
 });
